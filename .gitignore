@@ -1,0 +1,4 @@
+run/output/audit/*
+run/output/cucumber/*
+run/kubeconfig
+*.json

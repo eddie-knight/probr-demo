@@ -1,0 +1,30 @@
+# Empty and omitted keys will use default values
+BinariesPath:
+WriteDirectory: /probr/run/output
+InstallDir: /probr/cmd
+Run: # must be all-lowercase
+  - "kubernetes"
+  # - "storage"
+ServicePacks:
+  Kubernetes:
+    KubeConfig: /probr/run/kubeconfig # make sure to move your kubeconfig here
+    AuthorisedContainerImage: citihubprod.azurecr.io/citihub/probr-probe # required
+    UnauthorisedContainerImage: docker.io/citihub/probr-probe # required
+    ContainerRequiredDropCapabilities:
+      - NET_RAW
+    SystemNamespace: kube-system
+    DashboardPodNamePrefix: kubernetes-dashboard
+  Storage:
+    Provider: Azure # if object OR required vars within it are omitted, pack will not be included
+CloudProviders:
+  Azure:
+    TenantID: ""
+    SubscriptionID: ""
+    ClientID: ""
+    ClientSecret: ""
+    ManagementGroup:
+    ResourceGroup: ProbrRG
+    ResourceLocation: "westeurope"
+    Identity:
+      DefaultNamespaceAI:
+      DefaultNamespaceAIB:
